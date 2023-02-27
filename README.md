@@ -62,6 +62,5 @@ where the data type should match with predefined data type in the table to be in
 + `make run`: compile the whole program to the newest state and run `silly` the SQL.
 
 ## Still Working On...
-+ `UPDATE`: delete a column or add new column for a given table.
 + `TRIGGER`: create a table linked with a parent table which updates itself after some user defined action of the parent table.
 + `SELECT`: select certain row indexes in a given table with a given criteria, which supports nested `SELECT` and enable the indexes selected to be passed over to other operations.
