@@ -526,8 +526,16 @@ void Table::update(const string& colName, const char& type){
     case 'D':{
         // delete data from table data structure
         size_t col_idx_del = columnIdx[colName];
-        for (auto row : table)
-            row.erase(row.begin() + static_cast<int>(col_idx_del));
+        for (auto row : table){
+            // discard 'row' and create new row, b/c assignment operator is disabled in TableEntry class
+            vector<TableEntry> newRow;
+            newRow.reserve(row.size() - 1);
+            for (size_t idx = 0; idx < row.size(); idx++){
+                if (idx == col_idx_del) continue;
+                newRow.push_back(move(row[idx]));
+            }
+            row = move(newRow);
+        }
         // update vector<EntryType> columnType
         columnType.erase(columnType.begin() + static_cast<int>(col_idx_del));
         // update columnIdx
